@@ -5,6 +5,9 @@ import Hero from './components/hero/Hero';
 import About from './components/sections/About';
 import Stats from './components/sections/Stats';
 import HowToPlay from './components/sections/HowToPlay';
+import Gallery from './components/sections/Gallery';
+import Community from './components/sections/Community';
+import Faq from './components/sections/Faq';
 
 export default function App() {
   // Sections render after the browser tries to jump to a #hash, so redo that jump once mounted.
@@ -28,6 +31,9 @@ export default function App() {
         <About />
         <Stats />
         <HowToPlay />
+        <Gallery />
+        <Community />
+        <Faq />
       </main>
     </>
   );
