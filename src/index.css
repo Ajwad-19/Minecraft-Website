@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+  }
+  body {
+    @apply bg-void text-snow font-sans antialiased;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  ::selection {
+    @apply bg-grass text-void;
+  }
+  :focus-visible {
+    outline: 2px solid #29b6f6;
+    outline-offset: 3px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* Stepped "pixel" corners via clip-path — no rounded corners anywhere */
+  .pixel-corners {
+    clip-path: polygon(
+      0 6px, 6px 6px, 6px 0,
+      calc(100% - 6px) 0, calc(100% - 6px) 6px, 100% 6px,
+      100% calc(100% - 6px), calc(100% - 6px) calc(100% - 6px), calc(100% - 6px) 100%,
+      6px 100%, 6px calc(100% - 6px), 0 calc(100% - 6px)
+    );
+  }
+  .pixel-corners-sm {
+    clip-path: polygon(
+      0 4px, 4px 4px, 4px 0,
+      calc(100% - 4px) 0, calc(100% - 4px) 4px, 100% 4px,
+      100% calc(100% - 4px), calc(100% - 4px) calc(100% - 4px), calc(100% - 4px) 100%,
+      4px 100%, 4px calc(100% - 4px), 0 calc(100% - 4px)
+    );
+  }
+
+  /* Pixel border panel: hard 4px border with inner bevel */
+  .pixel-panel {
+    @apply relative bg-panel;
+    box-shadow:
+      0 0 0 4px #26323a,
+      inset 4px 4px 0 rgba(255, 255, 255, 0.04),
+      inset -4px -4px 0 rgba(0, 0, 0, 0.35);
+  }
+
+  .section {
+    @apply relative py-20 md:py-28 px-4 sm:px-6;
+  }
+  .container-mc {
+    @apply mx-auto w-full max-w-6xl;
+  }
+
+  .heading-pixel {
+    @apply font-pixel uppercase leading-[1.4] tracking-tight;
+  }
+  .eyebrow {
+    @apply font-pixel text-[10px] tracking-widest text-sky uppercase;
+  }
+
+  .text-glow-green {
+    text-shadow: 0 0 18px rgba(85, 255, 85, 0.45);
+  }
+  .text-glow-blue {
+    text-shadow: 0 0 18px rgba(41, 182, 246, 0.45);
+  }
+
+  .pixelated {
+    image-rendering: pixelated;
+  }
+}
