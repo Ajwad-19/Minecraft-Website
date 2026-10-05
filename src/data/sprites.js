@@ -109,6 +109,19 @@ export const SPRITES = {
       'dDbddDdb',
     ],
   },
+  check: {
+    palette: { k: '#0F3D17', g: '#55FF55', G: '#2E8B3C' },
+    rows: [
+      '.......kk',
+      '......kgk',
+      '.....kgGk',
+      'kk..kgGk.',
+      'kgkkgGk..',
+      'kGggGk...',
+      '.kGGk....',
+      '..kk.....',
+    ],
+  },
   heart: {
     palette: { k: '#3A0000', r: '#FF3B3B', R: '#B71C1C', w: '#FFD0D0' },
     rows: [

@@ -1,8 +1,18 @@
+import { useEffect } from 'react';
 import ParticleLayer from './components/effects/ParticleLayer';
 import Navbar from './components/layout/Navbar';
 import Hero from './components/hero/Hero';
+import About from './components/sections/About';
+import Stats from './components/sections/Stats';
+import HowToPlay from './components/sections/HowToPlay';
 
 export default function App() {
+  // Sections render after the browser tries to jump to a #hash, so redo that jump once mounted.
+  useEffect(() => {
+    const id = decodeURIComponent(window.location.hash.slice(1));
+    if (id) document.getElementById(id)?.scrollIntoView({ behavior: 'instant' });
+  }, []);
+
   return (
     <>
       <a
@@ -15,6 +25,9 @@ export default function App() {
       <Navbar />
       <main id="main">
         <Hero />
+        <About />
+        <Stats />
+        <HowToPlay />
       </main>
     </>
   );
