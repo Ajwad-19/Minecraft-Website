@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ExternalLink, MessageCircle, ScrollText, ThumbsUp } from 'lucide-react';
 import { COMMUNITY_STATS, RULES, SOCIAL, VOTE_SITES } from '../../data/site';
+import { onOpenModal } from '../../utils/events';
 import ActivityFeed from '../community/ActivityFeed';
 import GrassEdge from '../ui/GrassEdge';
 import Modal from '../ui/Modal';
@@ -12,6 +13,9 @@ import SectionHeading from '../ui/SectionHeading';
 export default function Community() {
   const [modal, setModal] = useState(null); // 'rules' | 'vote' | null
   const close = () => setModal(null);
+
+  // Lets other parts of the page (e.g. the footer "Rules" link) open these dialogs.
+  useEffect(() => onOpenModal(setModal), []);
 
   return (
     <section id="community" aria-labelledby="community-title" className="relative bg-panel">

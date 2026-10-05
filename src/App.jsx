@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import ParticleLayer from './components/effects/ParticleLayer';
 import Navbar from './components/layout/Navbar';
+import Footer from './components/layout/Footer';
 import Hero from './components/hero/Hero';
 import About from './components/sections/About';
 import Stats from './components/sections/Stats';
@@ -35,6 +36,7 @@ export default function App() {
         <Community />
         <Faq />
       </main>
+      <Footer />
     </>
   );
 }
