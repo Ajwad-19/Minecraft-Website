@@ -16,6 +16,14 @@ const TEXTURES = {
   stone: { top: ['#8B9399', '#7A8187', '#9AA2A8', '#6D747A'] },
   diamond: { top: ['#4DE8E8', '#29B6F6', '#7FF5F5', '#1FA3C9', '#B8FFFF'] },
   emerald: { top: ['#55FF55', '#3FD44A', '#2E8B3C', '#8CFF8C'] },
+  log: {
+    top: (x, y) => {
+      const ring = Math.max(Math.abs(x - 2.5), Math.abs(y - 2.5));
+      return ring > 2 ? '#5A3A20' : ring > 1 ? '#B08D57' : '#9C7A4B';
+    },
+    side: (x, y, r) => pick(['#5A3A20', '#6B4728', '#4A2F18'], r(x, Math.floor(y / 3))),
+  },
+  leaves: { top: ['#2E8B3C', '#1F6B2A', '#3FA82E', '#185A22', '#2E8B3C'] },
   diamondOre: {
     top: (x, y, r) =>
       r(x, y + 31) > 0.78 ? pick(['#4DE8E8', '#7FF5F5'], r(x, y)) : pick(['#8B9399', '#7A8187', '#6D747A'], r(x, y)),

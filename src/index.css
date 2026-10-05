@@ -88,3 +88,18 @@
     image-rendering: pixelated;
   }
 }
+
+/* Rising pixel embers in the hero */
+.ember {
+  opacity: 0;
+  animation-name: ember-rise;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform, opacity;
+}
+@keyframes ember-rise {
+  0% { transform: translate(0, 0); opacity: 0; }
+  10% { opacity: 0.85; }
+  80% { opacity: 0.5; }
+  100% { transform: translate(24px, -80vh); opacity: 0; }
+}
