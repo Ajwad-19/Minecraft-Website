@@ -1,7 +1,7 @@
 import { STATS } from '../../data/site';
 import CountUp from '../ui/CountUp';
 import GrassEdge from '../ui/GrassEdge';
-import IsoCube from '../ui/IsoCube';
+import BlockRender from '../ui/BlockRender';
 import Reveal from '../ui/Reveal';
 import SectionHeading from '../ui/SectionHeading';
 
@@ -32,10 +32,9 @@ export default function Stats() {
             {STATS.map((s, i) => (
               <Reveal as="li" key={s.label} delay={i * 0.1}>
                 <div className="pixel-panel group flex h-full flex-col items-center gap-4 bg-void/70 px-3 py-7 text-center transition-shadow duration-300 hover:shadow-[0_0_0_4px_#29B6F6,0_0_30px_-6px_rgba(41,182,246,0.5)] sm:px-5 sm:py-9">
-                  <IsoCube
+                  <BlockRender
                     type={s.cube}
-                    seed={i + 11}
-                    size={56}
+                    size={68}
                     className="transition-transform duration-300 group-hover:-translate-y-1.5 group-hover:rotate-6"
                   />
                   <p className="heading-pixel text-xl text-grass text-glow-green sm:text-2xl lg:text-[28px]">

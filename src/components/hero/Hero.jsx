@@ -3,10 +3,9 @@ import { motion, useMotionValue, useReducedMotion, useScroll, useSpring, useTran
 import { ChevronDown, Compass, Gamepad2, Play } from 'lucide-react';
 import { SERVER } from '../../data/site';
 import { useIsMobile } from '../../hooks/useMediaQuery';
-import IsoCube from '../ui/IsoCube';
+import BlockRender from '../ui/BlockRender';
 import PixelButton from '../ui/PixelButton';
 import ServerStatus from '../ui/ServerStatus';
-import FloatingIsland from './FloatingIsland';
 import HeroAmbience from './HeroAmbience';
 import Landscape from './Landscape';
 
@@ -93,10 +92,10 @@ export default function Hero() {
       >
         {cubes.map((c) => (
           <div key={c.type} className="absolute opacity-70" style={{ left: c.left, top: c.top }}>
-            <IsoCube
+            <BlockRender
               type={c.type}
-              size={isMobile ? Math.round(c.size * 0.75) : c.size}
-              seed={c.size}
+              size={isMobile ? Math.round(c.size * 0.85) : Math.round(c.size * 1.2)}
+              eager
               className="animate-float"
               style={{ animationDelay: `${c.delay}s` }}
             />
@@ -182,17 +181,26 @@ export default function Hero() {
             }}
             className="relative"
           >
-            <FloatingIsland size={74} />
+            <img
+              src="/renders/island.webp"
+              width="1400"
+              height="1400"
+              alt="A floating Minecraft island with a tree and diamond ore"
+              fetchPriority="high"
+              decoding="async"
+              draggable="false"
+              className="h-auto w-[480px] select-none drop-shadow-[0_30px_40px_rgba(0,0,0,0.55)] xl:w-[560px]"
+            />
             <div
               aria-hidden="true"
               className="absolute -bottom-10 left-1/2 h-8 w-3/4 -translate-x-1/2 bg-sky/20 blur-2xl"
             />
           </motion.div>
           <div aria-hidden="true" className="absolute -right-2 top-4">
-            <IsoCube type="diamond" size={52} seed={42} className="animate-float drop-shadow-[0_0_18px_rgba(41,182,246,0.6)]" />
+            <BlockRender type="diamond" size={64} eager className="animate-float drop-shadow-[0_0_18px_rgba(41,182,246,0.6)]" />
           </div>
           <div aria-hidden="true" className="absolute -left-4 bottom-16">
-            <IsoCube type="emerald" size={36} seed={17} className="animate-float drop-shadow-[0_0_14px_rgba(85,255,85,0.5)]" style={{ animationDelay: '2s' }} />
+            <BlockRender type="emerald" size={46} eager className="animate-float drop-shadow-[0_0_14px_rgba(85,255,85,0.5)]" style={{ animationDelay: '2s' }} />
           </div>
         </motion.div>
       </motion.div>
