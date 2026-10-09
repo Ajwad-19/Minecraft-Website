@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { ChevronLeft, ChevronRight, MapPin, Maximize2 } from 'lucide-react';
 import { GALLERY } from '../../data/site';
 import { playSound } from '../../utils/sound';
-import GalleryScene from '../gallery/GalleryScene';
+import GalleryImage from '../gallery/GalleryImage';
 import Modal from '../ui/Modal';
 import Reveal from '../ui/Reveal';
 import SectionHeading from '../ui/SectionHeading';
@@ -15,7 +15,7 @@ function GalleryTile({ item, onOpen }) {
       aria-label={`View ${item.title}, ${item.category}`}
       className="pixel-mask group relative block h-full w-full overflow-hidden bg-panel text-left focus-visible:outline-none"
     >
-      <GalleryScene
+      <GalleryImage
         scene={item.scene}
         focus={item.focus}
         className="transition-transform duration-500 ease-out group-hover:scale-110 group-focus-visible:scale-110"
@@ -107,7 +107,7 @@ export default function Gallery() {
         {item && (
           <div className="flex flex-col gap-5">
             <div className="pixel-mask relative aspect-[16/10] w-full overflow-hidden bg-panel">
-              <GalleryScene scene={item.scene} />
+              <GalleryImage scene={item.scene} alt={item.title} eager />
             </div>
             <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
               <div className="flex max-w-xl flex-col gap-2">

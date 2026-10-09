@@ -110,7 +110,7 @@ export const GALLERY = [
   },
   {
     scene: 'event',
-    focus: 'center',
+    focus: 'top',
     title: 'Summer Build Fest',
     category: 'Community Events',
     location: 'Event Plaza · 2026',
