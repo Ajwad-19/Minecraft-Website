@@ -1,9 +1,9 @@
 // Characters for the Players ring. Each id has a folder in public/renders/players/<id>/ containing
-// poster.webp (still frame) and one horizontal sprite sheet per action (16 frames of 300×450).
+// poster.webp (still frame) and one horizontal sprite sheet per action (32 frames of 300×450).
 // Sheets are rendered in Blender from the skin files (blender/minecraft-renders.blend).
 // To add a player: render their sheets in Blender, then add an entry here. The ring grows automatically.
 
-export const SPRITE = { frames: 16, fps: 14, width: 300, height: 450 };
+export const SPRITE = { frames: 32, fps: 28, width: 300, height: 450 };
 
 // Order in which hover/tap cycles through animations. 'idle' loops when nothing is playing.
 export const ACTIONS = ['strike', 'wave', 'jump', 'victory'];

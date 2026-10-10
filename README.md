@@ -75,7 +75,7 @@ Players live in **`src/data/players.js`**. Each entry has an `id`, username, rol
 Each `id` needs a folder in `public/renders/players/<id>/` containing:
 
 - `poster.webp`: a still frame, 300×450
-- `idle.webp`, `strike.webp`, `wave.webp`, `jump.webp`, `victory.webp`: horizontal sprite sheets of 16 frames each (4800×450)
+- `idle.webp`, `strike.webp`, `wave.webp`, `jump.webp`, `victory.webp`: horizontal sprite sheets of 32 frames each (9600×450)
 
 These are rendered in Blender from a 64×64 Minecraft skin (see below). HyTechster uses `public/skins.png`, and the placeholder players use the skins in `blender/skins/`.
 
@@ -104,7 +104,7 @@ src/
 
 The island, blocks, hero landscape and gallery images are rendered in **Blender 5** (EEVEE) and saved as WebP files in `public/renders/`. The source scene is `blender/minecraft-renders.blend`; it has its textures built in, so you can open it and re-render anything.
 
-Characters are built from a skin file as a standard Minecraft player (head, body, arms and legs, plus the outer hat, jacket, sleeve and trouser layer), holding a blocky diamond sword. Each animation is rendered as 16 frames and joined into one sprite sheet.
+Characters are built from a skin file as a standard Minecraft player (head, body, arms and legs, plus the outer hat, jacket, sleeve and trouser layer), holding a blocky diamond sword. Each animation is rendered as 32 frames and joined into one sprite sheet.
 
 | Files                    | What they are                                         |
 | ------------------------ | ----------------------------------------------------- |
