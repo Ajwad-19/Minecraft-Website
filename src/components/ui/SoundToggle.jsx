@@ -1,9 +1,9 @@
-import { Volume2, VolumeX } from 'lucide-react';
+import { SpeakerHigh, SpeakerSlash } from '@phosphor-icons/react';
 import { useSound } from '../../hooks/useSound';
 
 export default function SoundToggle({ className = '' }) {
   const { enabled, toggle } = useSound();
-  const Icon = enabled ? Volume2 : VolumeX;
+  const Icon = enabled ? SpeakerHigh : SpeakerSlash;
   return (
     <button
       type="button"
@@ -19,7 +19,7 @@ export default function SoundToggle({ className = '' }) {
         ` ${className}`
       }
     >
-      <Icon className="h-4 w-4" strokeWidth={2.5} aria-hidden="true" />
+      <Icon className="h-4 w-4" weight="bold" aria-hidden="true" />
     </button>
   );
 }

@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
-import { ChevronLeft, ChevronRight, MapPin, Maximize2 } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ArrowsOut, CaretLeft, CaretRight, MapPin } from '@phosphor-icons/react';
 import { GALLERY } from '../../data/site';
 import { playSound } from '../../utils/sound';
 import GalleryImage from '../gallery/GalleryImage';
@@ -30,14 +31,14 @@ function GalleryTile({ item, onOpen }) {
 
       <span
         className={
-          'absolute inset-x-0 bottom-0 flex flex-col gap-2 p-5 transition-all duration-300 ' +
+          'absolute inset-x-0 bottom-0 flex flex-col gap-2 p-5 transition-[transform,opacity] duration-300 ' +
           'translate-y-3 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 ' +
           'group-focus-visible:translate-y-0 group-focus-visible:opacity-100 ' +
           '[@media(hover:none)]:translate-y-0 [@media(hover:none)]:opacity-100'
         }
       >
         <span className="w-fit bg-grass px-2 py-1 font-pixel text-[8px] uppercase text-void">{item.category}</span>
-        <span className="heading-pixel text-xs text-snow sm:text-sm">{item.title}</span>
+        <span className="heading-pixel text-xl text-snow sm:text-2xl">{item.title}</span>
         <span className="flex items-center gap-1.5 text-xs text-stone">
           <MapPin className="h-3.5 w-3.5 text-sky" aria-hidden="true" />
           {item.location}
@@ -48,7 +49,7 @@ function GalleryTile({ item, onOpen }) {
         aria-hidden="true"
         className="absolute right-4 top-4 grid h-9 w-9 place-items-center border-2 border-sky/60 bg-void/70 text-sky opacity-0 transition-opacity duration-300 group-hover:opacity-100"
       >
-        <Maximize2 className="h-4 w-4" />
+        <ArrowsOut className="h-4 w-4" />
       </span>
 
       {/* Focus ring drawn inside the clip-path */}
@@ -83,7 +84,6 @@ export default function Gallery() {
       <div className="container-mc">
         <SectionHeading
           id="gallery-title"
-          eyebrow="World gallery"
           title="Built by our players"
           subtitle="Castles, bases, arenas and events: a peek at what the community has made."
         />
@@ -106,9 +106,22 @@ export default function Gallery() {
       <Modal open={open} onClose={close} title={item?.title ?? ''} eyebrow={item?.category} size="lg">
         {item && (
           <div className="flex flex-col gap-5">
-            <div className="pixel-mask relative aspect-[16/10] w-full overflow-hidden bg-panel">
-              <GalleryImage scene={item.scene} alt={item.title} eager />
-            </div>
+            {/* Swipe left/right to change build (touch and mouse) */}
+            <motion.div
+              key={item.scene}
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0.25}
+              onDragEnd={(e, info) => {
+                if (info.offset.x < -60) step(1);
+                else if (info.offset.x > 60) step(-1);
+              }}
+              initial={{ opacity: 0.4, x: 0 }}
+              animate={{ opacity: 1 }}
+              className="pixel-mask relative aspect-[16/10] w-full cursor-grab touch-pan-y overflow-hidden bg-panel active:cursor-grabbing"
+            >
+              <GalleryImage scene={item.scene} alt={item.title} eager className="pointer-events-none" />
+            </motion.div>
             <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
               <div className="flex max-w-xl flex-col gap-2">
                 <p className="flex items-center gap-1.5 text-sm text-sky">
@@ -124,7 +137,7 @@ export default function Gallery() {
                   aria-label="Previous build"
                   className="grid h-11 w-11 place-items-center border-[3px] border-edge bg-void text-snow transition-colors hover:border-sky hover:text-sky active:translate-y-0.5"
                 >
-                  <ChevronLeft className="h-5 w-5" />
+                  <CaretLeft className="h-5 w-5" />
                 </button>
                 <span className="font-pixel text-[10px] text-stone" aria-live="polite">
                   {index + 1}/{GALLERY.length}
@@ -135,7 +148,7 @@ export default function Gallery() {
                   aria-label="Next build"
                   className="grid h-11 w-11 place-items-center border-[3px] border-edge bg-void text-snow transition-colors hover:border-sky hover:text-sky active:translate-y-0.5"
                 >
-                  <ChevronRight className="h-5 w-5" />
+                  <CaretRight className="h-5 w-5" />
                 </button>
               </div>
             </div>

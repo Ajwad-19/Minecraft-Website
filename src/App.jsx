@@ -5,6 +5,7 @@ import Footer from './components/layout/Footer';
 import Hero from './components/hero/Hero';
 import About from './components/sections/About';
 import Stats from './components/sections/Stats';
+import Players from './components/sections/Players';
 import HowToPlay from './components/sections/HowToPlay';
 import Gallery from './components/sections/Gallery';
 import Community from './components/sections/Community';
@@ -25,12 +26,14 @@ export default function App() {
       >
         Skip to content
       </a>
+      <div aria-hidden="true" className="grain" />
       <ParticleLayer />
       <Navbar />
       <main id="main">
         <Hero />
         <About />
         <Stats />
+        <Players />
         <HowToPlay />
         <Gallery />
         <Community />

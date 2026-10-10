@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ExternalLink, MessageCircle, ScrollText, ThumbsUp } from 'lucide-react';
+import { ArrowSquareOut, DiscordLogo, Scroll, ThumbsUp } from '@phosphor-icons/react';
 import { COMMUNITY_STATS, RULES, SOCIAL, VOTE_SITES } from '../../data/site';
 import { onOpenModal } from '../../utils/events';
 import ActivityFeed from '../community/ActivityFeed';
@@ -36,16 +36,15 @@ export default function Community() {
             <SectionHeading
               id="community-title"
               align="left"
-              eyebrow="Community"
               title="Join the community"
               subtitle="Thousands of players. One world. Endless adventures."
             />
 
             <Reveal delay={0.1} className="-mt-4 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
-              <PixelButton href={SOCIAL.discord} target="_blank" rel="noopener noreferrer" size="lg" icon={MessageCircle} burst>
+              <PixelButton href={SOCIAL.discord} target="_blank" rel="noopener noreferrer" size="lg" icon={DiscordLogo} burst>
                 Join Discord
               </PixelButton>
-              <PixelButton variant="outline" size="lg" icon={ScrollText} onClick={() => setModal('rules')}>
+              <PixelButton variant="outline" size="lg" icon={Scroll} onClick={() => setModal('rules')}>
                 Server rules
               </PixelButton>
               <PixelButton variant="dark" size="lg" icon={ThumbsUp} onClick={() => setModal('vote')}>
@@ -71,7 +70,7 @@ export default function Community() {
         </div>
       </div>
 
-      <Modal open={modal === 'rules'} onClose={close} title="Server rules" eyebrow="Play fair, have fun">
+      <Modal open={modal === 'rules'} onClose={close} title="Server rules" eyebrow="Play fair, have fun" variant="drawer">
         <ol className="flex flex-col gap-3">
           {RULES.map((r, i) => (
             <li key={r.title} className="flex gap-4 border-2 border-edge bg-void/60 p-4">
@@ -90,7 +89,7 @@ export default function Community() {
         </p>
       </Modal>
 
-      <Modal open={modal === 'vote'} onClose={close} title="Vote for ExampleCraft" eyebrow="Daily rewards">
+      <Modal open={modal === 'vote'} onClose={close} title="Vote for ExampleCraft" eyebrow="Daily rewards" variant="drawer">
         <div className="mb-5 flex items-center gap-4 border-2 border-sky/40 bg-sky/10 p-4">
           <PixelArt sprite="emerald" size={36} />
           <p className="text-sm text-snow">
@@ -111,7 +110,7 @@ export default function Community() {
                   <span className="font-pixel text-[10px] text-sky">#{i + 1}</span>
                   <span className="font-semibold text-snow">{site.name}</span>
                 </span>
-                <ExternalLink className="h-4 w-4 text-stone transition-colors group-hover:text-grass" aria-hidden="true" />
+                <ArrowSquareOut className="h-4 w-4 text-stone transition-colors group-hover:text-grass" aria-hidden="true" />
                 <span className="sr-only">(opens in a new tab)</span>
               </a>
             </li>

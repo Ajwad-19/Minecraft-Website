@@ -1,4 +1,4 @@
-import { Users } from 'lucide-react';
+import { Users } from '@phosphor-icons/react';
 import { SERVER } from '../../data/site';
 
 export function StatusDot({ className = '' }) {
@@ -26,10 +26,12 @@ export default function ServerStatus({ className = '' }) {
       </span>
       <span aria-hidden="true" className="hidden h-4 w-0.5 bg-edge sm:block" />
       <span className="flex items-center gap-2 text-sm text-snow">
-        <Users className="h-4 w-4 text-sky" aria-hidden="true" />
+        <Users size={16} weight="bold" className="text-sky" aria-hidden="true" />
         <strong className="font-semibold">{SERVER.playersOnline}</strong>
         <span className="text-stone">Players Online</span>
       </span>
+      <span aria-hidden="true" className="hidden h-4 w-0.5 bg-edge md:block" />
+      <span className="hidden text-sm text-stone md:inline">{SERVER.version}</span>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useInView } from 'framer-motion';
-import { Activity } from 'lucide-react';
+import { Pulse } from '@phosphor-icons/react';
 import { ACTIVITY } from '../../data/site';
 import PixelArt from '../ui/PixelArt';
 import PlayerHead from '../ui/PlayerHead';
@@ -31,7 +31,7 @@ export default function ActivityFeed() {
     <div ref={ref} className="pixel-panel flex flex-col bg-void/80">
       <div className="flex items-center justify-between border-b-4 border-edge px-5 py-4">
         <span className="flex items-center gap-2 font-pixel text-[10px] text-snow">
-          <Activity className="h-4 w-4 text-sky" aria-hidden="true" />
+          <Pulse className="h-4 w-4 text-sky" aria-hidden="true" />
           LIVE ACTIVITY
         </span>
         <span className="flex items-center gap-2 text-xs text-grass">

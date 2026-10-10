@@ -1,53 +1,47 @@
 import { STATS } from '../../data/site';
+import BlockRender from '../ui/BlockRender';
 import CountUp from '../ui/CountUp';
 import GrassEdge from '../ui/GrassEdge';
-import BlockRender from '../ui/BlockRender';
 import Reveal from '../ui/Reveal';
-import SectionHeading from '../ui/SectionHeading';
+import { StatusDot } from '../ui/ServerStatus';
 
+/** Full-width strip of oversized numbers, separated by hairlines instead of boxed cards. */
 export default function Stats() {
   return (
     <section id="server" aria-labelledby="server-title" className="relative bg-panel">
       <GrassEdge />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 opacity-60"
+        className="pointer-events-none absolute inset-0"
         style={{
           backgroundImage:
-            'radial-gradient(ellipse 60% 50% at 20% 0%, rgba(85,255,85,0.08), transparent 70%),' +
-            'radial-gradient(ellipse 50% 50% at 85% 100%, rgba(41,182,246,0.10), transparent 70%)',
+            'radial-gradient(ellipse 50% 80% at 10% 0%, rgba(85,255,85,0.07), transparent 70%),' +
+            'radial-gradient(ellipse 50% 80% at 90% 100%, rgba(41,182,246,0.08), transparent 70%)',
         }}
       />
+      <div className="container-mc relative px-4 py-16 sm:px-6 md:py-20">
+        <Reveal className="mb-10 flex items-center gap-3">
+          <StatusDot />
+          <h2 id="server-title" className="heading-pixel text-2xl text-snow md:text-3xl">
+            The server, live
+          </h2>
+        </Reveal>
 
-      <div className="section">
-        <div className="container-mc">
-          <SectionHeading
-            id="server-title"
-            eyebrow="Live from the overworld"
-            title="The server in numbers"
-            subtitle="Fast hardware, low ping and a community that keeps growing."
-          />
-
-          <ul className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
-            {STATS.map((s, i) => (
-              <Reveal as="li" key={s.label} delay={i * 0.1}>
-                <div className="pixel-panel group flex h-full flex-col items-center gap-4 bg-void/70 px-3 py-7 text-center transition-shadow duration-300 hover:shadow-[0_0_0_4px_#29B6F6,0_0_30px_-6px_rgba(41,182,246,0.5)] sm:px-5 sm:py-9">
-                  <BlockRender
-                    type={s.cube}
-                    size={68}
-                    className="transition-transform duration-300 group-hover:-translate-y-1.5 group-hover:rotate-6"
-                  />
-                  <p className="heading-pixel text-xl text-grass text-glow-green sm:text-2xl lg:text-[28px]">
-                    <CountUp to={s.value} decimals={s.decimals} suffix={s.suffix} />
-                  </p>
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone sm:text-sm">
-                    {s.label}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
-          </ul>
-        </div>
+        <ul className="grid grid-cols-2 gap-y-10 lg:grid-cols-4 lg:divide-x-2 lg:divide-edge">
+          {STATS.map((s, i) => (
+            <Reveal as="li" key={s.label} delay={i * 0.08} className="group flex flex-col gap-3 px-2 lg:px-8 lg:first:pl-0">
+              <BlockRender
+                type={s.cube}
+                size={44}
+                className="transition-transform duration-300 group-hover:-translate-y-1 group-hover:rotate-6"
+              />
+              <p className="font-display text-5xl font-bold leading-none tabular-nums text-grass text-glow-green md:text-6xl xl:text-7xl">
+                <CountUp to={s.value} decimals={s.decimals} suffix={s.suffix} />
+              </p>
+              <p className="text-sm text-stone">{s.label}</p>
+            </Reveal>
+          ))}
+        </ul>
       </div>
     </section>
   );

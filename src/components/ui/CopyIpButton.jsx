@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Check, Copy } from 'lucide-react';
+import { Check, Copy } from '@phosphor-icons/react';
 import { SERVER } from '../../data/site';
 import { useCopyToClipboard } from '../../hooks/useCopyToClipboard';
 import { burstFromElement, PALETTES } from '../../utils/particles';
@@ -37,7 +37,7 @@ export default function CopyIpButton({ size = 'lg', className = '' }) {
           ` ${sizing}`
         }
       >
-        {copied ? <Check className="h-4 w-4" strokeWidth={3} aria-hidden="true" /> : <Copy className="h-4 w-4" strokeWidth={2.5} aria-hidden="true" />}
+        {copied ? <Check className="h-4 w-4" weight="bold" aria-hidden="true" /> : <Copy className="h-4 w-4" weight="bold" aria-hidden="true" />}
         <span>{copied ? 'Copied!' : 'Copy IP'}</span>
       </button>
 

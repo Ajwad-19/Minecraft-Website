@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Menu, Play, X } from 'lucide-react';
+import { List, Play, X } from '@phosphor-icons/react';
 import { NAV_LINKS } from '../../data/site';
 import { useActiveSection } from '../../hooks/useActiveSection';
 import Logo from '../ui/Logo';
@@ -40,7 +40,7 @@ export default function Navbar() {
       <nav aria-label="Main" className="container-mc flex h-[72px] items-center justify-between gap-4 px-4 sm:px-6">
         <Logo />
 
-        <ul className="hidden items-center gap-1 lg:flex">
+        <ul className="hidden items-center gap-1 xl:flex">
           {NAV_LINKS.map(({ id, label }) => {
             const isActive = active === id;
             return (
@@ -85,9 +85,9 @@ export default function Navbar() {
             aria-expanded={open}
             aria-controls="mobile-menu"
             aria-label={open ? 'Close menu' : 'Open menu'}
-            className="grid h-10 w-10 place-items-center border-[3px] border-edge bg-panel text-snow active:translate-y-0.5 lg:hidden"
+            className="grid h-10 w-10 place-items-center border-[3px] border-edge bg-panel text-snow active:translate-y-0.5 xl:hidden"
           >
-            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {open ? <X className="h-5 w-5" /> : <List className="h-5 w-5" />}
           </button>
         </div>
       </nav>
@@ -107,7 +107,7 @@ export default function Navbar() {
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.25, ease: 'easeOut' }}
-            className="overflow-hidden border-b-4 border-edge bg-void lg:hidden"
+            className="overflow-hidden border-b-4 border-edge bg-void xl:hidden"
           >
             <ul className="flex flex-col gap-2 px-4 py-5">
               {NAV_LINKS.map(({ id, label }, i) => (

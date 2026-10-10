@@ -1,67 +1,97 @@
-import { Server } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { useInView } from 'framer-motion';
+import { HardDrives } from '@phosphor-icons/react';
 import { SERVER, STEPS } from '../../data/site';
 import CopyIpButton from '../ui/CopyIpButton';
 import PixelArt from '../ui/PixelArt';
-import Reveal from '../ui/Reveal';
 import SectionHeading from '../ui/SectionHeading';
 import { StatusDot } from '../ui/ServerStatus';
 
+function Step({ step, index, active, onActive }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { amount: 0.6 });
+  useEffect(() => {
+    if (inView) onActive(index);
+  }, [inView, index, onActive]);
+
+  return (
+    <li
+      ref={ref}
+      className={
+        'flex flex-col gap-4 border-l-4 py-8 pl-6 transition-[opacity,border-color] duration-500 lg:min-h-[52vh] lg:justify-center lg:pl-10 ' +
+        (active ? 'border-grass opacity-100' : 'border-edge lg:opacity-35')
+      }
+    >
+      <div className="flex items-center gap-4">
+        <span className={`font-display text-7xl font-bold leading-none tabular-nums transition-colors duration-500 md:text-8xl ${active ? 'text-grass text-glow-green' : 'text-edge'}`}>
+          {String(index + 1).padStart(2, '0')}
+        </span>
+        <PixelArt sprite={step.sprite} size={44} />
+      </div>
+      <h3 className="heading-pixel text-3xl text-snow md:text-4xl">{step.title}</h3>
+      <p className="max-w-[44ch] text-lg leading-relaxed text-stone">{step.text}</p>
+    </li>
+  );
+}
+
+/** Steps scroll past on the right while the server address stays pinned on the left (desktop). */
 export default function HowToPlay() {
+  const [active, setActive] = useState(0);
+
   return (
     <section id="play" aria-labelledby="play-title" className="section">
       <div className="container-mc">
         <SectionHeading
           id="play-title"
+          align="left"
           eyebrow="How to play"
-          title="Join in 3 steps"
-          subtitle="No mods, no launchers. Just vanilla Minecraft and our address."
+          title="Online in three steps"
+          subtitle="No mods, no launchers. Just Minecraft and our address."
         />
 
-        <div className="relative">
-          {/* Dashed pixel connector (desktop) */}
-          <span
-            aria-hidden="true"
-            className="absolute left-[16%] right-[16%] top-[58px] hidden h-1 md:block"
-            style={{ backgroundImage: 'repeating-linear-gradient(90deg, #2E8B3C 0 12px, transparent 12px 20px)' }}
-          />
-          <ol className="relative grid gap-6 md:grid-cols-3">
-            {STEPS.map((step, i) => (
-              <Reveal as="li" key={step.title} delay={i * 0.12} className="relative">
-                <div className="pixel-panel flex h-full flex-col items-center gap-4 px-6 pb-8 pt-6 text-center">
-                  <div className="relative grid h-[72px] w-[72px] place-items-center border-4 border-edge bg-void">
-                    <PixelArt sprite={step.sprite} size={40} />
-                    <span className="absolute -right-3 -top-3 bg-grass px-1.5 py-1 font-pixel text-[9px] text-void shadow-[0_3px_0_#14401c]">
-                      {String(i + 1).padStart(2, '0')}
-                    </span>
-                  </div>
-                  <p className="font-pixel text-[10px] tracking-widest text-sky">STEP {String(i + 1).padStart(2, '0')}</p>
-                  <h3 className="heading-pixel text-sm text-snow">{step.title}</h3>
-                  <p className="text-sm text-stone">{step.text}</p>
+        <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
+          {/* Pinned panel */}
+          <div className="self-start lg:sticky lg:top-28">
+            <div className="pixel-panel overflow-hidden bg-void/80 shadow-[0_0_0_4px_#26323a,0_0_60px_-24px_rgba(85,255,85,0.4)]">
+              <div className="relative grid place-items-center overflow-hidden bg-[radial-gradient(60%_60%_at_50%_45%,rgba(41,182,246,0.18),transparent_70%)] px-6 pt-6">
+                <img
+                  src="/renders/island.webp"
+                  alt="A floating Minecraft island with a tree and diamond ore"
+                  width="1400"
+                  height="1400"
+                  loading="lazy"
+                  decoding="async"
+                  className="h-auto w-[min(320px,80%)] animate-float drop-shadow-[0_24px_30px_rgba(0,0,0,0.6)]"
+                />
+              </div>
+              <div className="flex flex-col gap-5 border-t-4 border-edge p-6">
+                <div className="flex flex-col gap-2">
+                  <span className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-stone">
+                    <HardDrives size={16} weight="bold" className="text-sky" aria-hidden="true" />
+                    Server address
+                  </span>
+                  <code className="break-all font-display text-2xl font-bold text-grass text-glow-green md:text-3xl">{SERVER.ip}</code>
+                  <span className="flex items-center gap-2 text-sm text-stone">
+                    <StatusDot className="!h-2 !w-2" />
+                    Online now · {SERVER.version}
+                  </span>
                 </div>
-              </Reveal>
+                <CopyIpButton className="w-full" />
+                <div className="hidden gap-1.5 lg:flex" aria-hidden="true">
+                  {STEPS.map((s, i) => (
+                    <span key={s.title} className={`h-1.5 flex-1 transition-colors duration-500 ${i <= active ? 'bg-grass' : 'bg-edge'}`} />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <ol className="flex flex-col">
+            {STEPS.map((step, i) => (
+              <Step key={step.title} step={step} index={i} active={active === i} onActive={setActive} />
             ))}
           </ol>
         </div>
-
-        {/* Server address panel */}
-        <Reveal delay={0.2} className="mt-14">
-          <div className="pixel-panel mx-auto flex max-w-3xl flex-col items-center gap-6 bg-void/80 p-6 shadow-[0_0_0_4px_#26323a,0_0_60px_-20px_rgba(85,255,85,0.35)] sm:flex-row sm:justify-between sm:p-8">
-            <div className="flex flex-col items-center gap-3 sm:items-start">
-              <span className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-stone">
-                <Server className="h-4 w-4 text-sky" aria-hidden="true" />
-                Server address
-              </span>
-              <code className="break-all font-pixel text-sm text-grass text-glow-green sm:text-base md:text-lg">
-                {SERVER.ip}
-              </code>
-              <span className="flex items-center gap-2 text-xs text-stone">
-                <StatusDot className="!h-2 !w-2" />
-                Online now · {SERVER.version}
-              </span>
-            </div>
-            <CopyIpButton className="w-full sm:w-auto" />
-          </div>
-        </Reveal>
       </div>
     </section>
   );

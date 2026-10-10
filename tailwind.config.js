@@ -18,8 +18,10 @@ export default {
         dirtdark: '#5A3A20',
       },
       fontFamily: {
+        // Press Start 2P: tiny labels only. Pixelify Sans: headings and numbers. Geist: body text.
         pixel: ['"Press Start 2P"', 'monospace'],
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        display: ['"Pixelify Sans"', '"Press Start 2P"', 'monospace'],
+        sans: ['"Geist Variable"', 'Inter', 'system-ui', 'sans-serif'],
       },
       boxShadow: {
         'glow-green': '0 0 24px rgba(85,255,85,0.35)',

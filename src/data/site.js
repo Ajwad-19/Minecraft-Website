@@ -10,6 +10,7 @@ export const NAV_LINKS = [
   { id: 'home', label: 'Home' },
   { id: 'about', label: 'About' },
   { id: 'server', label: 'Server' },
+  { id: 'players', label: 'Players' },
   { id: 'gallery', label: 'Gallery' },
   { id: 'community', label: 'Community' },
   { id: 'faq', label: 'FAQ' },
@@ -22,6 +23,7 @@ export const FEATURES = [
     text: 'Build your base, explore the world and survive with your friends.',
     tags: ['Land claims', 'Custom terrain', 'Co-op bases'],
     glow: 'green',
+    image: '/renders/gallery-base.webp',
   },
   {
     sprite: 'diamond',
@@ -29,6 +31,7 @@ export const FEATURES = [
     text: 'Mine, trade and build your way to the top.',
     tags: ['Player shops', 'Auction house', 'Jobs'],
     glow: 'blue',
+    block: 'diamond',
   },
   {
     sprite: 'trophy',
@@ -36,14 +39,15 @@ export const FEATURES = [
     text: 'Join weekly challenges, tournaments and community events.',
     tags: ['Build contests', 'PvP tourneys', 'Seasonal drops'],
     glow: 'green',
+    image: '/renders/gallery-event.webp',
   },
 ];
 
 export const STATS = [
-  { value: 247, suffix: '+', label: 'Online players', cube: 'grass' },
-  { value: 12500, suffix: '+', label: 'Registered players', cube: 'emerald' },
-  { value: 99.9, decimals: 1, suffix: '%', label: 'Uptime', cube: 'diamond' },
-  { value: 24, suffix: '/7', label: 'Server online', cube: 'diamondOre' },
+  { value: 247, label: 'Players online now', cube: 'grass' },
+  { value: 12840, label: 'Registered players', cube: 'emerald' },
+  { value: 99.7, decimals: 1, suffix: '%', label: 'Uptime, last 90 days', cube: 'diamond' },
+  { value: 24, suffix: '/7', label: 'Always online', cube: 'diamondOre' },
 ];
 
 export const STEPS = [
@@ -161,7 +165,7 @@ export const ACTIVITY = [
 export const FAQS = [
   {
     q: 'Is the server free to play?',
-    a: 'Yes! ExampleCraft is 100% free. Optional cosmetic ranks help cover hosting, but they never give a gameplay advantage.',
+    a: 'Yes. ExampleCraft is free to play. Optional cosmetic ranks help cover hosting, but they never give a gameplay advantage.',
   },
   {
     q: 'Which Minecraft version is supported?',
@@ -169,11 +173,11 @@ export const FAQS = [
   },
   {
     q: 'Can I play with friends?',
-    a: 'Absolutely. Create a party with /party, share your land claim and build together. Java and Bedrock players share the same world.',
+    a: 'Yes. Create a party with /party, share your land claim and build together. Java and Bedrock players share the same world.',
   },
   {
     q: 'Is the server available 24/7?',
-    a: 'Yes. We run on dedicated hardware with 99.9% uptime. Planned maintenance is always announced on Discord ahead of time.',
+    a: 'Yes. We run on dedicated hardware with 99.7% uptime over the last 90 days. Planned maintenance is always announced on Discord ahead of time.',
   },
   {
     q: 'How do I report a player?',

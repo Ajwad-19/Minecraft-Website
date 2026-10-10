@@ -61,14 +61,14 @@ export default function PixelButton({
       type={href ? undefined : 'button'}
       onClick={handleClick}
       className={
-        'group relative inline-flex select-none items-center justify-center gap-2.5 font-pixel uppercase ' +
+        'group relative inline-flex select-none items-center justify-center gap-2.5 whitespace-nowrap font-pixel uppercase ' +
         'tracking-wide transition-[transform,box-shadow,background-color,color,border-color] duration-100 ' +
         'hover:-translate-y-0.5 active:translate-y-1 ' +
         `${VARIANTS[variant]} ${SIZES[size]} ${className}`
       }
       {...rest}
     >
-      {Icon && <Icon aria-hidden="true" className="h-4 w-4 shrink-0" strokeWidth={2.5} />}
+      {Icon && <Icon aria-hidden="true" className="h-4 w-4 shrink-0" weight="bold" />}
       <span>{children}</span>
     </Tag>
   );

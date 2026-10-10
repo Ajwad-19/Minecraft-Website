@@ -6,3 +6,4 @@ dist
 
 # Blender auto-backups
 *.blend1
+.claude

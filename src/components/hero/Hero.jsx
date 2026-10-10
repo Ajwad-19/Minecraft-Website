@@ -1,9 +1,9 @@
 import { useRef } from 'react';
 import { motion, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform } from 'framer-motion';
-import { ChevronDown, Compass, Gamepad2, Play } from 'lucide-react';
-import { SERVER } from '../../data/site';
+import { CaretDown, Compass, Play } from '@phosphor-icons/react';
 import { useIsMobile } from '../../hooks/useMediaQuery';
 import BlockRender from '../ui/BlockRender';
+import Magnetic from '../ui/Magnetic';
 import PixelButton from '../ui/PixelButton';
 import ServerStatus from '../ui/ServerStatus';
 import HeroAmbience from './HeroAmbience';
@@ -114,7 +114,7 @@ export default function Hero() {
             <ServerStatus />
           </motion.div>
 
-          <h1 id="hero-title" className="heading-pixel text-[26px] leading-[1.35] sm:text-4xl md:text-5xl xl:text-[56px]">
+          <h1 id="hero-title" className="heading-pixel text-[56px] uppercase leading-[0.92] sm:text-7xl md:text-8xl xl:text-[112px]">
             {HEADLINE.map(({ word, className }, i) => (
               <motion.span
                 key={word}
@@ -143,27 +143,16 @@ export default function Hero() {
             transition={{ delay: 0.8, duration: 0.5 }}
             className="flex w-full flex-col gap-4 sm:w-auto sm:flex-row sm:gap-5"
           >
-            <PixelButton href="#play" size="lg" icon={Play} burst burstPreset="explosion" sound="explode">
-              Play now
-            </PixelButton>
+            <Magnetic className="w-full sm:w-auto">
+              <PixelButton href="#play" size="lg" icon={Play} burst burstPreset="explosion" sound="explode" className="w-full sm:w-auto">
+                Play now
+              </PixelButton>
+            </Magnetic>
             <PixelButton href="#server" size="lg" variant="outline" icon={Compass} burst sound="pop">
               Explore server
             </PixelButton>
           </motion.div>
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1, duration: 0.6 }}
-            className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-stone"
-          >
-            <Gamepad2 className="h-4 w-4 text-grass" aria-hidden="true" />
-            <span>{SERVER.version}</span>
-            <span aria-hidden="true" className="h-1 w-1 bg-edge" />
-            <span>
-              IP: <code className="font-semibold text-snow">{SERVER.ip}</code>
-            </span>
-          </motion.p>
         </div>
 
         {/* Voxel island centerpiece (desktop) */}
@@ -186,7 +175,7 @@ export default function Hero() {
               width="1400"
               height="1400"
               alt="A floating Minecraft island with a tree and diamond ore"
-              fetchPriority="high"
+              fetchpriority="high"
               decoding="async"
               draggable="false"
               className="h-auto w-[480px] select-none drop-shadow-[0_30px_40px_rgba(0,0,0,0.55)] xl:w-[560px]"
@@ -211,7 +200,7 @@ export default function Hero() {
         className="absolute bottom-6 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 text-stone transition-colors hover:text-grass"
       >
         <span className="font-pixel text-[8px] tracking-widest">SCROLL</span>
-        <ChevronDown className="h-5 w-5 animate-bounce" aria-hidden="true" />
+        <CaretDown size={20} weight="bold" className="animate-bounce" aria-hidden="true" />
       </a>
     </section>
   );

@@ -4,9 +4,9 @@ import { motion } from 'framer-motion';
 // Three transparent layers rendered in Blender with Poly Haven materials (blender/minecraft-renders.blend).
 // Each layer is a separate image so the hero can move them at different parallax speeds.
 const LAYERS = [
-  { key: 'far', src: '/renders/land-far.webp', filter: 'brightness(0.5) saturate(0.7)' },
-  { key: 'mid', src: '/renders/land-mid.webp', filter: 'brightness(0.62) saturate(0.9)' },
-  { key: 'near', src: '/renders/land-near.webp', filter: 'brightness(0.7)' },
+  { src: '/renders/land-far.webp', filter: 'brightness(0.5) saturate(0.7)' },
+  { src: '/renders/land-mid.webp', filter: 'brightness(0.62) saturate(0.9)' },
+  { src: '/renders/land-near.webp', filter: 'brightness(0.7)' },
 ];
 
 function Layer({ src, filter, style }) {
